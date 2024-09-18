@@ -26,7 +26,11 @@ class Post extends Model
     'body',
     'image_url',
     'user_id',
-    'category_id'
+    'category_id',
+    'high_rating',
+    ];
+    protected $casts = [
+        'high_rating' => 'integer', // 追加
     ];
     
     public function user()

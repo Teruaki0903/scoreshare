@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\RankScore; // モデルを追加
 use App\Models\Coments;
 use App\Http\Requests\PostRequest; // useする
 use Cloudinary;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -24,12 +26,36 @@ class PostController extends Controller
         //$comments = $post->comments()->where('post_id', $post->id)->get();
         //return view('posts.show')->with(['post' => $post, 'comments' => $comments]);
          // Postに関連するコメントを取得
+        //dd($post); // デバッグ用
         $comments = $post->comments; // post_id で自動的にフィルタリングされる
         return view('posts.show')->with(['post' => $post, 'comments' => $comments]);
     }
     public function create(Category $category)
     {
         return view('posts.create')->with(['categories' => $category->get()]);
+    }
+    
+    public function increaseRating(Post $post)
+    {
+        // high_rating を1増加させる
+        //$post->increment('high_rating');
+        
+        // high_rating を1増加させる
+        /*DB::table('posts')
+            ->where('id', $post->id)
+            ->increment('high_rating');
+        */
+        DB::table('posts')
+        ->where('id', $post->id)
+        ->update([
+            'high_rating' => $post->high_rating + 1,
+            'updated_at' => now(), // 更新日時を変更する
+        ]);
+
+        // 投稿詳細ページにリダイレクト
+        //return redirect()->route('posts.show', $post->id)->with('success', 'Rating increased!');
+        return redirect()->route('posts.show', ['post' => $post->id])->with('success', 'Rating increased!');
+
     }
     
     public function store(Request $request, Post $post)

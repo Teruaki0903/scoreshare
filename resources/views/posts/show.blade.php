@@ -13,13 +13,20 @@
         </h1>
         <div class="content">
             <div class="content__post">
-                <h3>本文</h3>
                 <p>{{ $post->body }}</p>    
             </div>
             <small>{{ $post->user->name }}</small>
             <div>
                 <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
             </div>
+            <div>
+                <strong>High Rating:</strong> {{ $post->high_rating ?? 0 }}
+            </div>
+
+            <form action="{{ route('posts.increaseRating', ['post' => $post->id]) }}" method="POST">
+                @csrf
+                <button type="submit">Increase Rating</button>
+            </form>
         </div>
         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <div class="footer">

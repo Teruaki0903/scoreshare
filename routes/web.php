@@ -9,6 +9,8 @@ use App\Http\Controllers\CategoryController;   //追加
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\CommentController; //コメント
+
+use App\Http\Controllers\RankingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +46,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     
+    Route::post('/posts/{post}/increase-rating', [PostController::class, 'increaseRating'])->name('posts.increaseRating');
+    
     //Route::get('/posts/{post}', [PostController::class ,'show']);
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); // ここで名前を付ける
     // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
@@ -58,4 +62,8 @@ Route::group(['middleware' => ['auth']], function(){
     //Route::get('/posts/{post}', [PostController::class, 'show']); //投稿詳細画面の表示
 
     Route::get('/categories/{category}', [CategoryController::class,'index']);
+    
+    
+    Route::get('/ranking/{name}', [RankingController::class, 'show']);
+    Route::get('/ranking', [RankingController::class, 'index']);
 });
