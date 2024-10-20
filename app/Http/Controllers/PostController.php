@@ -32,8 +32,13 @@ class PostController extends Controller
     }
     public function create(Category $category)
     {
-        return view('posts.create')->with(['categories' => $category->get()]);
+        $categories = $category->all();
+        #dd($categories); // カテゴリーの内容を表示
+        return view('posts.create')->with(['categories' => $categories]);
     }
+
+
+
     
     public function increaseRating(Post $post)
     {

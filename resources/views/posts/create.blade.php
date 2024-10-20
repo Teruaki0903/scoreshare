@@ -22,6 +22,14 @@
             <div class="image">
                 <input type="file" name="image">
             </div>
+            
+        <h2>New Category</h2>
+            <form action="{{ route('categories.store') }}" method="POST">
+            @csrf
+            <input type="text" name="name" placeholder="Category Name" required>
+            <button type="submit">Add Category</button>
+        </form>
+            
             <div class="category">
                 <h2>Category</h2>
                 <select name="post[category_id]">
@@ -30,6 +38,7 @@
                 @endforeach
                 </select>
             </div>
+            
             {{ Auth::user()->name }}
             <input type="submit" value="store"/>
         </form>

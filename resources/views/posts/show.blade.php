@@ -29,6 +29,12 @@
             </form>
         </div>
         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+        <h2>New Category</h2>
+            <form action="{{ route('categories.store') }}" method="POST">
+            @csrf
+            <input type="text" name="name" placeholder="Category Name" required>
+            <button type="submit">Add Category</button>
+        </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

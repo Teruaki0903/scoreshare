@@ -66,4 +66,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/ranking/{name}', [RankingController::class, 'show']);
     Route::get('/ranking', [RankingController::class, 'index']);
+    
+    
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 });
