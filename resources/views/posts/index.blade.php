@@ -137,11 +137,10 @@
                 <p class='body'>{{ $post->body }}</p>
                 <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                     @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="deletePost({{ $post->id }})">Delete</button> 
+                    
+            <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                 </form>
             </div>
-            <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         @endforeach
     </div>
     <div class='paginate'>
