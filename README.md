@@ -3,8 +3,6 @@
 ## サイトURL
 - [ScoreShare サイト](https://scoreshare-3079ff67e4c8.herokuapp.com/)
 
-## GitHub リポジトリ
-- [ScoreShare リポジトリ](https://github.com/Teruaki0903/scoreshare)
 
 ## 使用技術
 - Laravel Breeze
