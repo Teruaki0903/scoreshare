@@ -47,12 +47,12 @@ Route::group(['middleware' => ['auth']], function(){
     //Route::get('/', [PostController::class, 'index']);
     Route::get('/posts/create', [PostController::class, 'create']);
     
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); // ここで名前を付ける
+    
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     
     Route::post('/posts/{post}/increase-rating', [PostController::class, 'increaseRating'])->name('posts.increaseRating');
     
-    //Route::get('/posts/{post}', [PostController::class ,'show']);
-    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); // ここで名前を付ける
     // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
