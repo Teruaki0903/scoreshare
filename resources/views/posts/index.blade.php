@@ -22,7 +22,9 @@
             border-radius: 8px;
             margin-bottom: 20px;
             display: flex;
-            justify-content: flex-start;
+            /*justify-content: flex-start;*/
+            
+            justify-content: space-between; /* 左右に配置 */
             align-items: center;
         }
 
@@ -34,6 +36,11 @@
 
         .header a:hover {
             text-decoration: underline;
+        }
+        
+        
+        .header .create-link {
+            margin-left: auto; /* 右端に配置 */
         }
 
         .posts {
@@ -190,6 +197,7 @@
 <body>
     <div class="header">
         <a href="/">ScoreShare</a>
+        <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
     </div>
 
     <div class='posts'>
