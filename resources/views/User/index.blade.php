@@ -198,10 +198,20 @@
         <div class="header">
             <a href="/">ScoreShare</a>
             <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
-            <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
+            <!-- ログアウトフォーム -->
+            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                @csrf
+                <button type="submit" class="create-link" style="background: none; border: none; color: #90caf9; font-size: 2em; margin-left: 20px;">
+                    logout
+                </button>
+            </form>
+            <a href="/profile">profile</a> <!-- 右端に配置 -->
         
         </div>
+        <h1>my page </h1>
         
+            <h1>{{ Auth::user()->name }}</h1> <!-- ユーザー名を表示 -->
+            <h1>{{ Auth::user()->email }}</h1> <!-- ユーザー名を表示 -->
         <div class='posts'>
         @foreach ($own_posts as $post)
             <div class='post'>

@@ -199,7 +199,7 @@
     <div class="header">
         <a href="/">ScoreShare</a>
         <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
-        <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
+        <a href="/user" class="mypage-link">{{ Auth::user()->name }}</a>
     </div>
 
     <div class="main-container">
