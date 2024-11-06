@@ -1,8 +1,13 @@
-<!DOCTYPE HTML>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <style>body {
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <style>
+       body {
             font-family: 'Nunito', sans-serif;
             background-color: #121212;
             color: #ffffff;
@@ -190,20 +195,18 @@
             margin-bottom: 8px;
             color: #e0e0e0;
         }
-
     </style>
-    </head>
-    <body>
+</head>
+<body>
+    <div class="header">
+        <a href="/">ScoreShare</a>
+        <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
+        <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
         
-        <div class="header">
-            <a href="/">ScoreShare</a>
-            <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
-            <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
-        
-        </div>
-        
-        <div class='posts'>
-        @foreach ($own_posts as $post)
+    </div>
+
+    <div class='posts'>
+        @foreach ($posts as $post)
             <div class='post'>
                 <a href="/posts/{{ $post->id }}" style="text-decoration: none; color: inherit;">
                     <div class="image-container">
@@ -220,7 +223,9 @@
             </div>
         @endforeach
     </div>
-        
-        
-    </body>
+
+    <div class="pagination">
+        {{ $posts->links() }}
+    </div>
+</body>
 </html>

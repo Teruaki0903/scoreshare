@@ -17,6 +17,14 @@ class PostController extends Controller
     {
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);
     }
+    
+    public function user_index(Post $post)
+    {
+        $user_id = $post->user_id; // 指定されたpostのuser_idを取得
+        $posts = Post::where('user_id', $user_id)->paginate(10); // user_idが一致する投稿のみ取得
+
+        return view('posts.userindex')->with(['posts' => $posts]);
+    }
     public function show(Post $post)
     {
         //return view('posts.show')->with(['post' => $post]);

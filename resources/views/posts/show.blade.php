@@ -21,7 +21,7 @@
         border-radius: 8px;
         margin-bottom: 15px;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between; /* 左右に配置 */
         align-items: center;
     }
 
@@ -35,13 +35,16 @@
     .header a {
         color: #90caf9;
         text-decoration: none;
-        font-size: 1em;
         margin-left: 20px;
         font-size: 2em;
     }
 
     .header a:hover {
         text-decoration: underline;
+    }
+    
+    .header .create-link {
+        margin-left: auto; /* 右端に配置 */
     }
 
     .main-container {
@@ -195,6 +198,8 @@
 <body>
     <div class="header">
         <a href="/">ScoreShare</a>
+        <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
+        <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
     </div>
 
     <div class="main-container">
@@ -209,7 +214,7 @@
                 <p>{{ $post->body }}</p>    
             </div>
             <div class="rating-category" style="margin-bottom: auto; display: flex; justify-content: space-between; align-items: center;">
-                <small class="username">{{ $post->user->name }}</small>
+                <a href="/other_user/{{$post->id}}" class="username">{{ $post->user->name }}</a>
                 <form action="{{ route('posts.increaseRating', ['post' => $post->id]) }}" method="POST" class="rating-form">
                     @csrf
                     <button type="submit" class="rating-button">👍 {{ $post->high_rating ?? 0 }}</button>

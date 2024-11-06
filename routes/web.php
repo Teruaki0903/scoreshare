@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', [PostController::class, 'index']);
+Route::get('/other_user/{post}', [PostController::class, 'user_index']);
 
 require __DIR__.'/auth.php';
 

@@ -11,5 +11,6 @@ class UserController extends Controller
     {
         return view('User.index')->with(['own_posts' => $user->getOwnPaginateByLimit()]);
     }
+    
 }
 ?>

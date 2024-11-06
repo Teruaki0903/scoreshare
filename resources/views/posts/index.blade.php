@@ -12,26 +12,32 @@
             background-color: #121212;
             color: #ffffff;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
         }
-
 
         .header {
             background-color: #1e1e1e;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             /*justify-content: flex-start;*/
-            
             justify-content: space-between; /* 左右に配置 */
             align-items: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 2em;
+            flex-grow: 1;
         }
 
         .header a {
             color: #90caf9;
             text-decoration: none;
             font-size: 2em;
+            margin-left: 20px;
         }
 
         .header a:hover {
@@ -99,22 +105,16 @@
             color: #ffffff !important;
             margin-bottom: 1px; /* Reduced margin */
         }
-
-
+        
         .category-link {
-            color: #ffffff !important; /* Force text color to white */
-        }
-
-
-
-        .category-link {
-            color: #ffffff; /* Ensures text is white */
+            color: #90caf9;
+            text-decoration: none;
         }
 
         .category-link:hover {
-            margin-top: 2px;
-            color: #ffffff; /* Keeps text white on hover */
+            text-decoration: underline;
         }
+
 
 
         .body {
@@ -124,10 +124,13 @@
             margin-bottom: 20px;
         }
 
+        
         .username {
-            display: inline-block;
-            margin-right: 10px;
+            display: block;
             font-size: 1.2em;
+            font-weight: bold;
+            color: #999;
+            margin-bottom: 5px;
         }
 
         .rating-button {
@@ -198,6 +201,8 @@
     <div class="header">
         <a href="/">ScoreShare</a>
         <a href="/posts/create" class="create-link">create</a> <!-- 右端に配置 -->
+        <a href="/dashboard" class="mypage-link">{{ Auth::user()->name }}</a>
+        
     </div>
 
     <div class='posts'>
@@ -210,9 +215,9 @@
                     <h2 class='title'>
                         {{ $post->title }}
                     </h2>
-                    <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+                    <a href="/categories/{{ $post->category->id }}" class="category-link">{{ $post->category->name }}</a>
                     <div class='rating-category' style='display: flex; align-items: center; gap: 10px;'>
-                        <small class='username'>{{ $post->user->name }}</small>
+                        <a href="/other_user/{{$post->id}}" class="username">{{ $post->user->name }}</a>
                     </div>
                 </a>
             </div>
