@@ -37,12 +37,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/other_user/{post}', [PostController::class, 'user_index']);
 
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['auth']], function(){
+    
+Route::get('/', [PostController::class, 'index']);
+Route::get('/other_user/{post}', [PostController::class, 'user_index']);
     Route::get('/user', [UserController::class, 'index']);
     
     //Route::get('/', [PostController::class, 'index']);
